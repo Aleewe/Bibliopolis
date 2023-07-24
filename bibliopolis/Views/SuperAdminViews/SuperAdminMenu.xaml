@@ -6,11 +6,69 @@
         xmlns:local="clr-namespace:bibliopolis.Views"
         mc:Ignorable="d"
         Title="SuperAdminMenu" Height="450" Width="800">
-    <Grid>
-        <Label Content="A este menu solo tiene acceso del SA, " HorizontalAlignment="Left" Margin="36,90,0,0" VerticalAlignment="Top"></Label>
-        <Label Content="tendría la opción de gestionar bibliotecario, ver la lista de libros y alumnos y gestionar biblioteca (este lo llevará a HomeMenu)" HorizontalAlignment="Left" Margin="36,139,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="BTN_ManageLibrarians" Content="Gestionar bibliotecarios" HorizontalAlignment="Left" Height="39" Margin="157,248,0,0" VerticalAlignment="Top" Width="145" Click="BTN_ManageLibrarians_Click"/>
-        <Button x:Name="BTN_ManageStudents" Content="Gestionar alumnos" HorizontalAlignment="Left" Height="39" Margin="350,248,0,0" VerticalAlignment="Top" Width="152" Click="BTN_ManageStudents_Click"/>
 
-    </Grid>
+    <Window.Resources>
+        <Style x:Key="MainButtonStyle" TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontFamily" Value="Montserrat"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Padding" Value="10.5"/>
+            <Setter Property="Margin" Value="7.5"/>
+            <Setter Property="MinWidth" Value="180"/>
+            <Setter Property="MinHeight" Value="70"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Background">
+                <Setter.Value>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Offset="0.1" Color="#fd731d"/>
+                        <!-- Naranja -->
+                        <GradientStop Offset="0.8" Color="#fd731d"/>
+                        <!-- Café -->
+                    </LinearGradientBrush>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="ButtonBorder" Background="{TemplateBinding Background}"
+                            CornerRadius="10" SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <!-- Efecto al pasar el mouse -->
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Offset="0" Color="#fcb045"/>
+                                            <GradientStop Offset="1" Color="#fcb045"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <!-- Efecto al hacer clic -->
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter TargetName="ButtonBorder" Property="Background">
+                                    <Setter.Value>
+                                        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                            <GradientStop Offset="0" Color="#8E6596"/>
+                                            <GradientStop Offset="1" Color="#6B4E71"/>
+                                        </LinearGradientBrush>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,196,0,0" Height="89" Width="628">
+        <Button x:Name="BTN_ManageLibrarians" Content="Gestionar bibliotecarios" Click="BTN_ManageLibrarians_Click" Style="{StaticResource MainButtonStyle}"/>
+        <Button x:Name="BTN_ManageStudents" Content="Gestionar alumnos" Click="BTN_ManageStudents_Click" Style="{StaticResource MainButtonStyle}"/>
+        <Button x:Name="BTN_ManageBooks" Content="Gestionar libros" Style="{StaticResource MainButtonStyle}"/>
+
+    </StackPanel>
 </Window>

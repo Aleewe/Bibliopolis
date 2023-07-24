@@ -8,8 +8,8 @@ using bibliopolis.Context;
 namespace bibliopolis.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230722031907_Example")]
-    partial class Example
+    [Migration("20230724140326_example")]
+    partial class example
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,6 +17,31 @@ namespace bibliopolis.Migrations
             modelBuilder
                 .HasAnnotation("Relational:MaxIdentifierLength", 64)
                 .HasAnnotation("ProductVersion", "5.0.0");
+
+            modelBuilder.Entity("bibliopolis.Entities.Book", b =>
+                {
+                    b.Property<long>("ISBN")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Editorial")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("Units")
+                        .HasColumnType("int");
+
+                    b.HasKey("ISBN");
+
+                    b.ToTable("Books");
+                });
 
             modelBuilder.Entity("bibliopolis.Entities.Librarian", b =>
                 {
